@@ -3,64 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farman Shafi | Project Showcase</title>
+    <title>Vanguard Agency | Digital Craftsmanship</title>
     
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Tailwind CSS Setup -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Adding the required Google Fonts including Dancing Script for Calligraphy -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        podium: ['"FSP DEMO - PODIUM Sharp 4.11"', 'sans-serif'],
+                    },
+                    colors: {
+                        black: '#000000',
+                        white: '#ffffff',
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            overflow-x: hidden; 
-        }
-        
-        .glass { 
-            background: rgba(255, 255, 255, 0.05); 
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-        }
-        
-        /* Smooth hiding for scrollbar */
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        @import url('https://db.onlinewebfonts.com/c/8b75d9dcff6a48c35a46656192adf019?family=FSP+DEMO+-+PODIUM+Sharp+4.11');
+
+        /* Base styles */
+        body {
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
-        /* Performance boost for animations */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        /* Smooth scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        /* Hero Animation Keyframes */
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-up {
+            opacity: 0;
+            animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* Mobile Menu Transitions */
+        .mobile-link, .mobile-cta {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), 
+                        transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .menu-active .mobile-link,
+        .menu-active .mobile-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .no-scroll {
+            overflow: hidden !important;
+        }
+
+        /* --- PROJECT SHOWCASE STYLES (Integrated) --- */
+        
+        .glass { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+
         .parallax-element {
             will-change: transform, opacity;
             pointer-events: none;
-        }
-
-        /* --- NEW ADDITIONS FOR SUPER SMOOTH & CALLIGRAPHY EFFECTS --- */
-
-        /* Calligraphy Font Class */
-        .calligraphy-font {
-            font-family: 'Dancing Script', cursive !important;
-        }
-
-        /* Animated Coloured Gradient for Text */
-        .colorful-gradient {
-            background: linear-gradient(270deg, #38bdf8, #c084fc, #f472b6, #fb923c, #38bdf8);
-            background-size: 400% 400%;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            background-clip: text !important;
-            color: transparent !important;
-            animation: GradientTextFlow 8s ease infinite;
-        }
-
-        @keyframes GradientTextFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         /* Buttery Smooth Scroll Reveal Classes */
@@ -76,215 +122,353 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Enhanced hover effects for cards */
+        /* Enhanced hover effects for agency cards */
         .glass-card-hover:hover {
-            box-shadow: 0 20px 40px -10px rgba(56, 189, 248, 0.15);
-            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px -10px rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.06);
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen">
+<body class="font-inter antialiased relative w-full">
 
-    <section class="relative w-full min-h-screen flex flex-col overflow-hidden">
-        <!-- Serene Background Video -->
-        <video 
-            class="absolute inset-0 w-full h-full object-cover z-0" 
-            autoplay 
-            muted 
-            loop 
-            playsinline 
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260613_180732_a54afbf6-b30d-470e-861f-669871f09f67.mp4">
-        </video>
-        <!-- Dark Overlay for better text readability -->
-        <div class="absolute inset-0 bg-black/50 z-0 transition-opacity duration-1000"></div>
+    <!-- Background Video Container (Fixed to background for both sections) -->
+    <div class="fixed inset-0 w-full h-full z-0 pointer-events-none">
+        <video
+            class="w-full h-full object-cover"
+            autoplay
+            muted
+            loop
+            playsinline
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260606_154941_df1a96e1-a06f-450c-bd02-d863414cc1a0.mp4"
+        ></video>
+        <!-- Overlay layers for text readability (Lightened to remove the black block) -->
+        <div class="absolute inset-0 bg-black/10 mix-blend-multiply z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/50 pointer-events-none z-0"></div>
+    </div>
 
-        <!-- Original Navbar Content (Enhanced with Calligraphy & Smoothness) -->
-        <nav class="relative z-10 p-6 flex justify-between items-center max-w-6xl mx-auto w-full smooth-reveal is-visible" style="transition-delay: 0.1s;">
-            <!-- Added calligraphy and colorful gradient to the logo -->
-            <h1 class="text-4xl font-bold tracking-tighter calligraphy-font colorful-gradient">FS<span class="text-blue-500">.</span></h1>
-            <div class="space-x-6 text-sm font-medium opacity-80 flex items-center">
-                <a href="#" class="hover:text-blue-400 hover:scale-105 transition-all duration-300">Portfolio</a>
-                <a href="#" class="hover:text-blue-400 hover:scale-105 transition-all duration-300">About</a>
+    <!-- HERO SECTION -->
+    <div class="relative z-10 flex flex-col min-h-screen w-full">
+        
+        <!-- Navigation -->
+        <nav class="flex items-center justify-between px-6 py-5 sm:px-10 lg:px-16 lg:py-7 w-full">
+            <div class="font-podium text-2xl sm:text-3xl font-bold uppercase tracking-wider cursor-pointer select-none">
+                VANGUARD
             </div>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center space-x-10">
+                <a href="#projects-section" class="text-sm text-white/80 tracking-widest uppercase hover:text-white transition-colors duration-300 relative group">
+                    Projects
+                    <span class="absolute -bottom-1.5 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#studio" class="text-sm text-white/80 tracking-widest uppercase hover:text-white transition-colors duration-300 relative group">
+                    Studio
+                    <span class="absolute -bottom-1.5 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#offerings" class="text-sm text-white/80 tracking-widest uppercase hover:text-white transition-colors duration-300 relative group">
+                    Offerings
+                    <span class="absolute -bottom-1.5 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#inquire" class="text-sm text-white/80 tracking-widest uppercase hover:text-white transition-colors duration-300 relative group">
+                    Inquire
+                    <span class="absolute -bottom-1.5 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+
+            <!-- Desktop CTA -->
+            <div class="hidden md:block">
+                <a href="#contact" class="flex items-center space-x-2 border border-white/30 hover:border-white/60 px-6 py-3 text-xs tracking-widest uppercase hover:bg-white/10 transition-all duration-300 group">
+                    <span>Get in touch</span>
+                    <i class="ph ph-arrow-up-right text-base group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="menu-btn" class="md:hidden z-50 flex flex-col justify-center items-end space-y-1.5 w-8 h-8 focus:outline-none group">
+                <div class="w-6 h-0.5 bg-white transition-all duration-300 group-hover:w-8"></div>
+                <div class="w-6 h-0.5 bg-white transition-all duration-300"></div>
+                <div class="w-4 h-0.5 bg-white transition-all duration-300 group-hover:w-6"></div>
+            </button>
         </nav>
 
-        <!-- Original Header Content overlaying the video (Enhanced with Calligraphy & Smoothness) -->
-        <header class="relative z-10 flex-grow flex flex-col justify-center py-20 px-6 text-center smooth-reveal is-visible" style="transition-delay: 0.3s;">
-            <!-- Drop shadow added so gradient text is visible over moving video. Applied Calligraphy and Colorful Gradient! -->
-            <h2 class="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 drop-shadow-2xl calligraphy-font colorful-gradient pb-4" style="line-height: 1.2;">
-                Digital Craftsmanship.
-            </h2>
-            <p class="max-w-xl mx-auto text-slate-200 text-lg md:text-xl drop-shadow-md font-medium tracking-wide">
-                A curated collection of web projects, experiments, and technical solutions.
-            </p>
-        </header>
-    </section>
+        <!-- Main Hero Content -->
+        <main class="flex-1 flex flex-col justify-center px-6 sm:px-10 lg:px-16 max-w-7xl mx-auto w-full pb-10">
+            
+            <div class="flex items-center space-x-3 mb-6 lg:mb-8 animate-fade-up">
+                <i class="ph ph-crown text-white/70 text-base"></i>
+                <span class="text-white/70 text-xs sm:text-sm tracking-[0.3em] uppercase mt-0.5">
+                    World-Class Digital Collective
+                </span>
+            </div>
 
-    <section id="projects-section" class="relative w-full min-h-screen overflow-hidden flex flex-col" style="background: linear-gradient(180deg, #010A17 0%, #0A4267 30%, #20658E 60%, #6BADC4 100%)">
+            <div class="flex flex-col animate-fade-up delay-1 cursor-default select-none">
+                <h1 class="font-podium text-white uppercase leading-[0.92] tracking-tight text-[clamp(2.8rem,8vw,7rem)] hover:text-white/90 transition-colors">
+                    Design.
+                </h1>
+                <h1 class="font-podium text-white uppercase leading-[0.92] tracking-tight text-[clamp(2.8rem,8vw,7rem)] hover:text-white/90 transition-colors">
+                    Disrupt.
+                </h1>
+                <h1 class="font-podium text-white uppercase leading-[0.92] tracking-tight text-[clamp(2.8rem,8vw,7rem)] hover:text-white/90 transition-colors">
+                    Conquer.
+                </h1>
+            </div>
+
+            <p class="animate-fade-up delay-2 mt-6 lg:mt-8 text-white/70 text-sm sm:text-base leading-relaxed max-w-md">
+                We build fierce brand identities <br class="hidden sm:block" />
+                that don't just turn heads — <span class="text-white font-semibold">they lead.</span>
+            </p>
+
+            <!-- CTA Row (Smooth Scroll to Projects) -->
+            <div class="animate-fade-up delay-3 mt-8 lg:mt-10 flex flex-wrap items-center gap-4 sm:gap-6">
+                <!-- Changed to <a> tag pointing to #projects-section -->
+                <a href="#projects-section" class="group flex items-center space-x-2 bg-black hover:bg-neutral-900 border border-transparent hover:border-white/10 px-5 sm:px-7 py-3 sm:py-4 text-[11px] sm:text-xs tracking-widest uppercase transition-all duration-300">
+                    <span>See Our Work</span>
+                    <i class="ph ph-arrow-down text-base group-hover:translate-y-0.5 transition-transform duration-300"></i>
+                </a>
+                
+                <div class="hidden sm:flex items-center space-x-3 border-l border-white/20 pl-6 h-10">
+                    <i class="ph ph-medal text-[2rem] text-white/50"></i>
+                    <div class="flex flex-col">
+                        <span class="text-white/60 text-xs tracking-wider uppercase leading-tight">Top-Rated</span>
+                        <span class="text-white/60 text-xs tracking-wider uppercase leading-tight font-semibold">Brand Studio</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="animate-fade-up delay-4 mt-12 sm:mt-16 lg:mt-20 flex flex-wrap gap-8 sm:gap-12 lg:gap-16 border-t border-white/10 pt-8 w-full max-w-3xl">
+                <div class="flex flex-col">
+                    <span class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">250+</span>
+                    <span class="text-white/50 text-[9px] sm:text-xs tracking-widest uppercase mt-2 font-medium">Brands Transformed</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">95%</span>
+                    <span class="text-white/50 text-[9px] sm:text-xs tracking-widest uppercase mt-2 font-medium">Client Retention</span>
+                </div>
+                <div class="flex flex-col">
+                    <!-- Updated to 2+ Years -->
+                    <span class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">2+</span>
+                    <span class="text-white/50 text-[9px] sm:text-xs tracking-widest uppercase mt-2 font-medium">Years in the Game</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- PROJECT SHOWCASE SECTION (Same Theme Down) -->
+    <section id="projects-section" class="relative z-10 w-full min-h-screen flex flex-col pt-20 bg-black/10 backdrop-blur-[2px]">
         
-        <!-- Animated Parallax Background Elements (Made more responsive for mobile) -->
+        <!-- Parallax Background Elements (Kept from original code, styled to match agency theme) -->
         <img 
             id="rainbow" 
             src="https://soft-zoom-63098134.figma.site/_assets/v11/8d520a7515d06cbfc403d0125e3d05b1a7ccd29c.png" 
             alt="Rainbow" 
-            class="absolute inset-x-0 top-0 w-full h-auto z-0 object-cover opacity-80 parallax-element min-h-[300px]" 
+            class="absolute inset-x-0 top-0 w-full h-auto z-0 object-cover opacity-10 mix-blend-screen parallax-element min-h-[300px]" 
         />
         <img 
             id="left-cloud" 
             src="https://soft-zoom-63098134.figma.site/_assets/v11/0d6dfd3f90b930f21726f2ed56a3320d79b7a797.png" 
             alt="Cloud" 
-            class="absolute left-0 bottom-[10%] z-0 w-[300px] sm:w-[500px] md:w-[650px] max-w-[80vw] parallax-element" 
-            style="margin-left: -50%; opacity: 0;" 
+            class="absolute left-0 bottom-[10%] z-0 w-[300px] sm:w-[500px] md:w-[650px] max-w-[80vw] opacity-10 mix-blend-screen parallax-element" 
+            style="margin-left: -50%;" 
         />
         <img 
             id="right-cloud" 
             src="https://soft-zoom-63098134.figma.site/_assets/v11/0d6dfd3f90b930f21726f2ed56a3320d79b7a797.png" 
             alt="Cloud" 
-            class="absolute right-0 bottom-[15%] z-0 w-[300px] sm:w-[500px] md:w-[650px] max-w-[80vw] scale-x-[-1] parallax-element" 
-            style="margin-right: -75%; opacity: 0;" 
+            class="absolute right-0 bottom-[15%] z-0 w-[300px] sm:w-[500px] md:w-[650px] max-w-[80vw] scale-x-[-1] opacity-10 mix-blend-screen parallax-element" 
+            style="margin-right: -75%;" 
         />
 
-        <!-- Original Main Content Container -->
-        <main class="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-20 flex-grow w-full">
+        <div class="relative z-10 max-w-6xl mx-auto px-6 py-20 flex-grow w-full flex flex-col justify-center">
+            
+            <div class="text-center mb-16 smooth-reveal">
+                <h2 class="font-podium text-4xl md:text-6xl text-white uppercase tracking-wider mb-4">Selected Works</h2>
+                <p class="text-white/50 text-sm tracking-widest uppercase">Digital Craftsmanship & Innovation</p>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-grid">
                 
-                <!-- Project Card 1 -->
-                <div class="glass glass-card-hover rounded-3xl p-6 hover:-translate-y-3 transition-all duration-500 group bg-slate-900/40 smooth-reveal" style="transition-delay: 0.1s;">
-                    <div class="h-40 bg-slate-800/80 rounded-2xl mb-6 flex items-center justify-center text-slate-400 group-hover:text-blue-400 group-hover:scale-105 transition-all duration-500">
-                        <svg class="w-12 h-12 transform group-hover:rotate-6 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <!-- Project Card 1 (Demo 1) -->
+                <div class="glass glass-card-hover rounded-2xl p-6 hover:-translate-y-3 transition-all duration-500 group smooth-reveal" style="transition-delay: 0.1s;">
+                    <div class="h-48 bg-white/5 rounded-xl mb-6 flex items-center justify-center text-white/30 group-hover:text-white group-hover:scale-105 transition-all duration-500 border border-white/5 overflow-hidden relative">
+                        <i class="ph ph-laptop text-5xl transform group-hover:rotate-6 transition-transform duration-500 relative z-10"></i>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-2 text-white calligraphy-font tracking-wide">Live Demo 1</h3>
-                    <p class="text-slate-300 text-sm mb-6 leading-relaxed">Original project showcasing core web functionality and interface design.</p>
-                    <a href="https://farmanshafi2007-hub.github.io/DEMO-1-/" target="_blank" class="block w-full text-center bg-blue-600 hover:bg-blue-500 py-3 rounded-xl font-bold transition-all duration-300 text-white shadow-lg hover:shadow-blue-500/30">View Project</a>
+                    <h3 class="text-xl font-bold mb-2 text-white font-podium tracking-wide uppercase">Live Demo 1</h3>
+                    <p class="text-white/60 text-sm mb-8 leading-relaxed font-inter">Original project showcasing core web functionality and premium interface design.</p>
+                    <a href="https://farmanshafi2007-hub.github.io/DEMO-1-/" target="_blank" class="flex items-center justify-between w-full border border-white/20 hover:border-white px-5 py-3 text-xs tracking-widest uppercase transition-all duration-300 group/btn bg-white/5 hover:bg-white text-white hover:text-black">
+                        <span>View Project</span>
+                        <i class="ph ph-arrow-up-right text-base group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300"></i>
+                    </a>
                 </div>
 
-                <!-- Project Card 2 -->
-                <div class="glass glass-card-hover rounded-3xl p-6 hover:-translate-y-3 transition-all duration-500 group bg-slate-900/40 smooth-reveal" style="transition-delay: 0.2s;">
-                    <div class="h-40 bg-slate-800/80 rounded-2xl mb-6 flex items-center justify-center text-slate-400 group-hover:text-blue-400 group-hover:scale-105 transition-all duration-500">
-                        <svg class="w-12 h-12 transform group-hover:rotate-6 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <!-- Project Card 2 (Demo 2) -->
+                <div class="glass glass-card-hover rounded-2xl p-6 hover:-translate-y-3 transition-all duration-500 group smooth-reveal" style="transition-delay: 0.2s;">
+                    <div class="h-48 bg-white/5 rounded-xl mb-6 flex items-center justify-center text-white/30 group-hover:text-white group-hover:scale-105 transition-all duration-500 border border-white/5 overflow-hidden relative">
+                        <i class="ph ph-code text-5xl transform group-hover:-rotate-6 transition-transform duration-500 relative z-10"></i>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-2 text-white calligraphy-font tracking-wide">Live Demo 2</h3>
-                    <p class="text-slate-300 text-sm mb-6 leading-relaxed">Second project demonstration featuring advanced interactive elements and design.</p>
-                    <a href="https://farmanshafi2007-hub.github.io/DEMO-2/" target="_blank" class="block w-full text-center bg-blue-600 hover:bg-blue-500 py-3 rounded-xl font-bold transition-all duration-300 text-white shadow-lg hover:shadow-blue-500/30">View Project</a>
+                    <h3 class="text-xl font-bold mb-2 text-white font-podium tracking-wide uppercase">Live Demo 2</h3>
+                    <p class="text-white/60 text-sm mb-8 leading-relaxed font-inter">Second project demonstration featuring advanced interactive elements and smooth transitions.</p>
+                    <a href="https://farmanshafi2007-hub.github.io/DEMO-2/" target="_blank" class="flex items-center justify-between w-full border border-white/20 hover:border-white px-5 py-3 text-xs tracking-widest uppercase transition-all duration-300 group/btn bg-white/5 hover:bg-white text-white hover:text-black">
+                        <span>View Project</span>
+                        <i class="ph ph-arrow-up-right text-base group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300"></i>
+                    </a>
                 </div>
 
-                <!-- Placeholder for additional projects -->
-                <div class="glass rounded-3xl p-6 flex flex-col justify-center items-center border-dashed border-2 border-slate-500/50 h-[380px] bg-slate-900/20 smooth-reveal hover:bg-slate-800/30 transition-all duration-500" style="transition-delay: 0.3s;">
-                    <p class="text-slate-400 font-medium calligraphy-font text-2xl">More projects coming soon</p>
+                <!-- Placeholder Project Card -->
+                <div class="glass rounded-2xl p-6 flex flex-col justify-center items-center border-dashed border-2 border-white/10 h-full min-h-[380px] smooth-reveal hover:bg-white/5 transition-all duration-500 group" style="transition-delay: 0.3s;">
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i class="ph ph-plus text-white/50 text-xl"></i>
+                    </div>
+                    <p class="text-white/50 font-medium font-inter text-sm tracking-widest uppercase">More coming soon</p>
                 </div>
             </div>
-        </main>
+        </div>
 
-        <!-- Original Footer Content -->
-        <footer class="relative z-10 py-10 text-center text-slate-200 text-sm border-t border-white/10 mt-auto w-full bg-slate-900/20 backdrop-blur-md smooth-reveal">
-            &copy; 2026 Farman Shafi. All rights reserved.
+        <!-- Footer -->
+        <footer class="relative z-10 py-10 text-center text-white/40 text-xs tracking-widest uppercase border-t border-white/10 mt-auto w-full glass smooth-reveal">
+            &copy; 2026 Farman Shafi & Vanguard. All rights reserved.
         </footer>
     </section>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md transition-all duration-500 flex flex-col opacity-0 invisible">
+        
+        <div class="flex items-center justify-between px-6 py-5 sm:px-10 w-full border-b border-white/10">
+            <div class="font-podium text-2xl sm:text-3xl font-bold uppercase tracking-wider text-white">
+                VANGUARD
+            </div>
+            <button id="close-btn" class="p-2 -mr-2 text-white/70 hover:text-white transition-colors focus:outline-none group">
+                <i class="ph ph-x text-3xl group-hover:rotate-90 transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div class="flex-1 flex flex-col justify-center items-start px-6 sm:px-10 pb-20 space-y-6 overflow-y-auto">
+            <a href="#projects-section" class="mobile-link font-podium text-4xl sm:text-6xl text-white uppercase block hover:text-white/70 hover:translate-x-4 transition-all">Projects</a>
+            <a href="#studio" class="mobile-link font-podium text-4xl sm:text-6xl text-white uppercase block hover:text-white/70 hover:translate-x-4 transition-all" style="transition-delay: 80ms;">Studio</a>
+            <a href="#offerings" class="mobile-link font-podium text-4xl sm:text-6xl text-white uppercase block hover:text-white/70 hover:translate-x-4 transition-all" style="transition-delay: 160ms;">Offerings</a>
+            <a href="#inquire" class="mobile-link font-podium text-4xl sm:text-6xl text-white uppercase block hover:text-white/70 hover:translate-x-4 transition-all" style="transition-delay: 240ms;">Inquire</a>
+
+            <a href="#contact" class="mobile-cta mt-12 inline-flex items-center space-x-2 border border-white/30 px-8 py-4 text-sm tracking-widest uppercase text-white hover:bg-white hover:text-black transition-colors" style="transition-delay: 320ms;">
+                <span>Get in touch</span>
+                <i class="ph ph-arrow-up-right text-xl"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Interactivity Script (Mobile Menu & Scroll Reveal & Parallax) -->
     <script>
-        // Math utilities for smooth animation
-        const lerp = (start, end, factor) => start + (end - start) * factor;
-        const clamp = (min, max, value) => Math.min(Math.max(value, min), max);
-
-        // Get DOM Elements
-        const section = document.getElementById('projects-section');
-        const rainbow = document.getElementById('rainbow');
-        const leftCloud = document.getElementById('left-cloud');
-        const rightCloud = document.getElementById('right-cloud');
-
-        // Initial animation state variables
-        const animState = {
-            rainbowY: 0,
-            leftCloudX: -300,
-            leftCloudY: 0,
-            leftCloudOpacity: 0,
-            rightCloudX: 300,
-            rightCloudY: 0,
-            rightCloudOpacity: 0,
-        };
-
-        // Smooth loop function running natively without lag
-        function updateParallax() {
-            if (!section) return;
-
-            const rect = section.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-
-            // Calculate how far the section has scrolled through the viewport (0 to 1)
-            const rawProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
-            const progress = clamp(0, 1, rawProgress);
-
-            // Calculate target values based on scroll progress
-            const targetRainbowY = 120 + progress * (-280); // Move rainbow up
-
-            let targetLeftX = -300;
-            let targetRightX = 300;
-            let targetOpacity = 0;
-
-            // Bring clouds into view when section is sufficiently visible
-            if (progress > 0.12 && progress < 0.92) {
-                targetLeftX = 0;
-                targetRightX = 0;
-                targetOpacity = 1;
-            }
-
-            // Clouds drift upwards slowly as user scrolls down
-            const targetCloudY = progress * -50;
-
-            // Apply linear interpolation (lerp) for that ultra-smooth, "lag free" buttery feel
-            animState.rainbowY = lerp(animState.rainbowY, targetRainbowY, 0.06);
-            
-            animState.leftCloudX = lerp(animState.leftCloudX, targetLeftX, 0.04);
-            animState.leftCloudY = lerp(animState.leftCloudY, targetCloudY, 0.04);
-            animState.leftCloudOpacity = lerp(animState.leftCloudOpacity, targetOpacity, 0.04);
-            
-            animState.rightCloudX = lerp(animState.rightCloudX, targetRightX, 0.04);
-            animState.rightCloudY = lerp(animState.rightCloudY, targetCloudY, 0.04);
-            animState.rightCloudOpacity = lerp(animState.rightCloudOpacity, targetOpacity, 0.04);
-
-            // Apply transformations using GPU-accelerated translate3d
-            if (rainbow) {
-                rainbow.style.transform = `translate3d(0, ${animState.rainbowY}px, 0)`;
-            }
-            if (leftCloud) {
-                leftCloud.style.transform = `translate3d(${animState.leftCloudX}px, ${animState.leftCloudY}px, 0)`;
-                leftCloud.style.opacity = animState.leftCloudOpacity;
-            }
-            if (rightCloud) {
-                rightCloud.style.transform = `translate3d(${animState.rightCloudX}px, ${animState.rightCloudY}px, 0)`;
-                rightCloud.style.opacity = animState.rightCloudOpacity;
-            }
-
-            // Call next frame
-            requestAnimationFrame(updateParallax);
-        }
-
-        // Start animation loop
-        updateParallax();
-
-        // --- NEW ADDITION: Intersection Observer for buttery smooth card reveals ---
         document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. MOBILE MENU LOGIC ---
+            const menuBtn = document.getElementById('menu-btn');
+            const closeBtn = document.getElementById('close-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
+
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('opacity-0', 'invisible');
+                mobileMenu.classList.add('opacity-100', 'visible', 'menu-active');
+                document.body.classList.add('no-scroll');
+            });
+
+            const closeMenu = () => {
+                mobileMenu.classList.remove('opacity-100', 'visible', 'menu-active');
+                mobileMenu.classList.add('opacity-0', 'invisible');
+                document.body.classList.remove('no-scroll');
+            };
+
+            closeBtn.addEventListener('click', closeMenu);
+            mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+
+            // --- 2. SMOOTH REVEAL INTERSECTION OBSERVER ---
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.15 // Triggers when 15% of the element is visible
+                threshold: 0.15 
             };
 
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // Optional: Unobserve after revealing to prevent repeating animation
-                        // observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            // Select all elements with the smooth-reveal class and observe them
             const revealElements = document.querySelectorAll('.smooth-reveal');
-            revealElements.forEach(el => {
-                revealObserver.observe(el);
-            });
+            revealElements.forEach(el => revealObserver.observe(el));
+
+
+            // --- 3. PARALLAX EFFECT LOGIC ---
+            const lerp = (start, end, factor) => start + (end - start) * factor;
+            const clamp = (min, max, value) => Math.min(Math.max(value, min), max);
+
+            const section = document.getElementById('projects-section');
+            const rainbow = document.getElementById('rainbow');
+            const leftCloud = document.getElementById('left-cloud');
+            const rightCloud = document.getElementById('right-cloud');
+
+            const animState = {
+                rainbowY: 0,
+                leftCloudX: -100,
+                leftCloudY: 0,
+                leftCloudOpacity: 0,
+                rightCloudX: 100,
+                rightCloudY: 0,
+                rightCloudOpacity: 0,
+            };
+
+            function updateParallax() {
+                if (!section) return;
+
+                const rect = section.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                const rawProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+                const progress = clamp(0, 1, rawProgress);
+
+                const targetRainbowY = 100 + progress * (-150); 
+
+                let targetLeftX = -100;
+                let targetRightX = 100;
+                let targetOpacity = 0;
+
+                if (progress > 0.1 && progress < 0.95) {
+                    targetLeftX = 0;
+                    targetRightX = 0;
+                    targetOpacity = 0.15; // Kept subtle to match dark theme
+                }
+
+                const targetCloudY = progress * -30;
+
+                animState.rainbowY = lerp(animState.rainbowY, targetRainbowY, 0.06);
+                
+                animState.leftCloudX = lerp(animState.leftCloudX, targetLeftX, 0.04);
+                animState.leftCloudY = lerp(animState.leftCloudY, targetCloudY, 0.04);
+                animState.leftCloudOpacity = lerp(animState.leftCloudOpacity, targetOpacity, 0.04);
+                
+                animState.rightCloudX = lerp(animState.rightCloudX, targetRightX, 0.04);
+                animState.rightCloudY = lerp(animState.rightCloudY, targetCloudY, 0.04);
+                animState.rightCloudOpacity = lerp(animState.rightCloudOpacity, targetOpacity, 0.04);
+
+                if (rainbow) rainbow.style.transform = `translate3d(0, ${animState.rainbowY}px, 0)`;
+                if (leftCloud) {
+                    leftCloud.style.transform = `translate3d(${animState.leftCloudX}px, ${animState.leftCloudY}px, 0)`;
+                    leftCloud.style.opacity = animState.leftCloudOpacity;
+                }
+                if (rightCloud) {
+                    rightCloud.style.transform = `translate3d(${animState.rightCloudX}px, ${animState.rightCloudY}px, 0)`;
+                    rightCloud.style.opacity = animState.rightCloudOpacity;
+                }
+
+                requestAnimationFrame(updateParallax);
+            }
+
+            updateParallax();
         });
     </script>
 </body>
